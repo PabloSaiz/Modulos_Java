@@ -1,0 +1,159 @@
+public class modulos {
+    //Autor: Pablo Saiz Rodriguez
+
+    public static short numeroCifras(int x) {
+        //Entorno:
+        short cifras;
+        int num = x;
+
+        //Algoritmo:
+        cifras = 1;
+        if (num < 0) {
+            num = num * -1;
+        }//Fin Si
+        while (num > 0) {
+            cifras++;
+            num = num / 10;
+        }//Fin Mientras
+
+        return cifras;
+    }//Fin numeroCifras
+
+    public static boolean continuar() {
+        //Entorno
+        char letra;
+
+        //Algoritmo:
+        do {
+            System.out.print("¿Desea continuar? (S/N): ");
+            letra = Leer.datoChar();
+        } while (letra != 's' && letra != 'S' && letra != 'n' && letra != 'N');
+        return letra == 's' || letra == 'S'; //Fin Si
+    }//Fin continuar
+
+    public static boolean fechaCorrecta(byte d, byte m, short a) {
+        //Entorno:
+        byte dia, mes;
+        short anio;
+        boolean esCorrecta;
+
+        //Algoritmo:
+        esCorrecta = false;
+        dia = d;
+        mes = m;
+        anio = a;
+        switch (mes) {
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if (dia >= 1 && dia <= 30) {
+                    esCorrecta = true;
+                }//Fin Si
+                break;
+            case 2:
+                if (esBisiesto(anio)) {
+                    if (dia >= 1 && dia <= 29) {
+                        esCorrecta = true;
+                    }//Fin Si
+                } else {
+                    if (dia >= 1 && dia <= 28) {
+                        esCorrecta = true;
+                    }//Fin Si
+                }//Fin Si
+                break;
+            default:
+                if (dia >= 1 && dia <= 31) {
+                    esCorrecta = true;
+                }//Fin Si
+                break;
+        }//Fin Según Sea
+        return esCorrecta;
+    }//Fin fechaCorrecta
+
+    public static void pintaDivisores(int n) {
+        //Entorno:
+        int num, i, j;
+
+        //Algoritmo:
+        num = n;
+        i = num / 2;
+        j = 1;
+        if (num < 0) {
+            num = num * -1;
+        }//Fin Si
+        if (num != 1) {
+            System.out.print(num + " --> " + num + ", " + 1);
+            while (i > j) {
+                if (num % i == 0) {
+                    j = num / i;
+                    System.out.print(", " + i);
+                    if (i != j) {
+                        System.out.print(", " + j);
+                    }//Fin Si
+                }//Fin Si
+                i--;
+            }//Fin Mientras
+        } else {
+            System.out.print(num + " --> " + num);
+        }//Fin Si
+    }//Fin pintaDivisores
+
+    public static String nombreMes(int n) {
+        //Entorno:
+        String mes;
+
+        //Algoritmo:
+        mes = "";
+        if (n >= 1 && n <= 12) {
+            switch (n) {
+                case 1:
+                    mes = "Enero";
+                    break;
+                case 2:
+                    mes = "Febrero";
+                    break;
+                case 3:
+                    mes = "Marzo";
+                    break;
+                case 4:
+                    mes = "Abril";
+                    break;
+                case 5:
+                    mes = "Mayo";
+                    break;
+                case 6:
+                    mes = "Junio";
+                    break;
+                case 7:
+                    mes = "Julio";
+                    break;
+                case 8:
+                    mes = "Agosto";
+                    break;
+                case 9:
+                    mes = "Septiembre";
+                    break;
+                case 10:
+                    mes = "Octubre";
+                    break;
+                case 11:
+                    mes = "Noviembre";
+                    break;
+                case 12:
+                    mes = "Diciembre";
+                    break;
+            }//Fin Según Sea
+        } else {
+            mes = "Mes no válido";
+        }//Fin Si
+        return mes;
+    }//Fin nombreMes
+
+    public static boolean esBisiesto(short anio) {
+        //Entorno:
+        boolean bisiesto;
+
+        //Algoritmo:
+        return (anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0)); //Fin Si
+    }//Fin esBisiesto

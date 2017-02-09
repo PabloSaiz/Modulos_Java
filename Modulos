@@ -1,0 +1,61 @@
+public class modulos {
+    //Autor: Pablo Saiz Rodriguez
+
+    public static short numeroCifras(int x) {
+        //Entorno:
+        short cifras;
+        int num = x;
+
+        //Algoritmo:
+        cifras = 1;
+        if (num < 0) {
+            num = num * -1;
+        }//Fin Si
+        while (num > 0) {
+            cifras++;
+            num = num / 10;
+        }//Fin Mientras
+
+        return cifras;
+    }//Fin numeroCifras
+
+    public static boolean continuar() {
+        //Entorno
+        char letra;
+
+        //Algoritmo:
+        do {
+            System.out.print("¿Desea continuar? (S/N): ");
+            letra = Leer.datoChar();
+        } while (letra != 's' && letra != 'S' && letra != 'n' && letra != 'N');
+        return letra == 's' || letra == 'S'; //Fin Si
+    }//Fin continuar
+
+    public static void pintaDivisores(int n) {
+        //Entorno:
+        int num, i, j;
+
+        //Algoritmo:
+        num = n;
+        i = num / 2;
+        j = 1;
+        if (num < 0) {
+            num = num * -1;
+        }//Fin Si
+        if (num != 1) {
+            System.out.print(num + " --> " + num + ", " + 1);
+            while (i > j) {
+                if (num % i == 0) {
+                    j = num / i;
+                    System.out.print(", " + i);
+                    if (i != j) {
+                        System.out.print(", " + j);
+                    }//Fin Si
+                }//Fin Si
+                i--;
+            }//Fin Mientras
+        } else {
+            System.out.print(num + " --> " + num);
+        }//Fin Si
+    }//Fin pintaDivisores
+}
